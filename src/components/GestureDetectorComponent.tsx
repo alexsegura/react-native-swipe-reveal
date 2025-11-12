@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, forwardRef, useImperativeHandle } from 'react';
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 import { usePanXGesture } from '../hooks/usePanXGesture';
@@ -7,7 +7,7 @@ import { EAnimationType } from '../constants';
 import { View } from 'react-native';
 import { styles } from './SwipeRevealWrapper/SwipeRevealWrapper.styles';
 
-export const GestureDetectorComponent = ({
+export const GestureDetectorComponent = forwardRef(({
   id,
   children,
   animationType,
@@ -17,7 +17,8 @@ export const GestureDetectorComponent = ({
   rightSwipeViewWidth,
   itemWidth,
   itemContainerStyle,
-}: TListItem) => {
+}: TListItem, ref) => {
+
   const isLeftSwipe = useMemo(() => {
     return (
       (animationType === EAnimationType['left-swipe'] ||
@@ -42,7 +43,7 @@ export const GestureDetectorComponent = ({
     return animationType === EAnimationType['right-full-swipe'];
   }, [animationType]);
 
-  const { panXAnimatedStyles, panXGesture } = usePanXGesture(
+  const { panXAnimatedStyles, panXGesture, close } = usePanXGesture(
     leftSwipeViewWidth,
     rightSwipeViewWidth,
     id,
@@ -54,6 +55,14 @@ export const GestureDetectorComponent = ({
     isRightFullSwipe,
     itemWidth
   );
+
+  useImperativeHandle(ref, () => {
+    return {
+      close: () => {
+        close();
+      }
+    };
+  }, []);
 
   return isLeftSwipe || isRightSwipe || isLeftFullSwipe || isRightFullSwipe ? (
     <GestureDetector gesture={panXGesture}>
@@ -70,4 +79,4 @@ export const GestureDetectorComponent = ({
   ) : (
     <View style={[itemContainerStyle && itemContainerStyle]}>{children}</View>
   );
-};
+});

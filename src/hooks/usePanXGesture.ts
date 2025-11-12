@@ -18,7 +18,7 @@ export const usePanXGesture = (
   isRightSwipe: boolean,
   isLeftFullSwipe: boolean,
   isRightFullSwipe: boolean,
-  itemWidth: number
+  itemWidth: number,
 ) => {
   //this is used to make scrollview active with pangesture
   const initialTouchLocation = useSharedValue<{
@@ -245,6 +245,10 @@ export const usePanXGesture = (
       }
     });
 
+  const close = () => {
+    resetOffsets(ANIMATION_DURATION);
+  }
+
   const panXAnimatedStyles = useAnimatedStyle(() => {
     return {
       transform: [
@@ -258,5 +262,6 @@ export const usePanXGesture = (
   return {
     panXAnimatedStyles,
     panXGesture,
+    close,
   };
 };

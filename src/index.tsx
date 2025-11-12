@@ -1,3 +1,4 @@
+import { forwardRef, useRef } from 'react';
 import { SwipeableItemWrapperComponent } from './components/SwipeRevealWrapper/SwipeRevealWrapper';
 import type { TSwipeableItemWrapper } from './types';
 
@@ -21,7 +22,7 @@ export { EAnimationType } from './constants';
  * @param itemContainerStyle - Styles for immediate parent view container of Children to be wrapped
  */
 
-export const SwipeableItemWrapper = ({
+export const SwipeableItemWrapper = forwardRef(({
   id,
   children,
   animationType,
@@ -36,10 +37,12 @@ export const SwipeableItemWrapper = ({
   leftFullSwipeViewContainerStyle,
   rightFullSwipeViewContainerStyle,
   itemContainerStyle,
-}: TSwipeableItemWrapper) => {
+}: TSwipeableItemWrapper, ref) => {
+
   return (
     <SwipeableItemWrapperComponent
       id={id}
+      ref={ref}
       animationType={animationType}
       leftSwipeView={leftSwipeView}
       rightSwipeView={rightSwipeView}
@@ -56,4 +59,4 @@ export const SwipeableItemWrapper = ({
       {children}
     </SwipeableItemWrapperComponent>
   );
-};
+});
