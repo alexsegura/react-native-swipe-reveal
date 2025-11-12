@@ -1,4 +1,4 @@
-import { forwardRef, useRef } from 'react';
+import { forwardRef } from 'react';
 import { SwipeableItemWrapperComponent } from './components/SwipeRevealWrapper/SwipeRevealWrapper';
 import type { TSwipeableItemWrapper } from './types';
 

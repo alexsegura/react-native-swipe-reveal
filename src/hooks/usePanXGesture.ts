@@ -18,7 +18,7 @@ export const usePanXGesture = (
   isRightSwipe: boolean,
   isLeftFullSwipe: boolean,
   isRightFullSwipe: boolean,
-  itemWidth: number,
+  itemWidth: number
 ) => {
   //this is used to make scrollview active with pangesture
   const initialTouchLocation = useSharedValue<{
