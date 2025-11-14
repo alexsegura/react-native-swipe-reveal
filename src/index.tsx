@@ -32,6 +32,8 @@ export const SwipeableItemWrapper = forwardRef(({
   rightFullSwipeView,
   onLeftFullSwipe,
   onRightFullSwipe,
+  onLeftSwipe,
+  onRightSwipe,
   leftSwipeViewContainerStyle,
   rightSwipeViewContainerStyle,
   leftFullSwipeViewContainerStyle,
@@ -50,6 +52,8 @@ export const SwipeableItemWrapper = forwardRef(({
       rightFullSwipeView={rightFullSwipeView}
       onLeftFullSwipe={onLeftFullSwipe}
       onRightFullSwipe={onRightFullSwipe}
+      onLeftSwipe={onLeftSwipe}
+      onRightSwipe={onRightSwipe}
       leftSwipeViewContainerStyle={leftSwipeViewContainerStyle}
       rightSwipeViewContainerStyle={rightSwipeViewContainerStyle}
       leftFullSwipeViewContainerStyle={leftFullSwipeViewContainerStyle}

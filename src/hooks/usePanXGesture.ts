@@ -14,6 +14,8 @@ export const usePanXGesture = (
   id: string | number,
   onLeftFullSwipe: ((key: TItemKey) => void) | undefined,
   onRightFullSwipe: ((key: TItemKey) => void) | undefined,
+  onLeftSwipe: ((key: TItemKey) => void) | undefined,
+  onRightSwipe: ((key: TItemKey) => void) | undefined,
   isLeftSwipe: boolean,
   isRightSwipe: boolean,
   isLeftFullSwipe: boolean,
@@ -170,6 +172,10 @@ export const usePanXGesture = (
             //move to right drag boundary
             offsetX.value = withTiming(rightSwipeViewWidth, {
               duration: ANIMATION_DURATION,
+            }, () => {
+              if (typeof onRightSwipe === 'function') {
+                runOnJS(onRightSwipe)(id);
+              }
             });
             startX.value = rightSwipeViewWidth;
           } else if (offsetX.value < rightSwipeViewWidth / 2) {
@@ -208,6 +214,10 @@ export const usePanXGesture = (
             //we set -leftSwipeViewWidth, as moving from left to right, values should be negative.
             offsetX.value = withTiming(-leftSwipeViewWidth, {
               duration: ANIMATION_DURATION,
+            }, () => {
+              if (typeof onLeftSwipe === 'function') {
+                runOnJS(onLeftSwipe)(id);
+              }
             });
             startX.value = -leftSwipeViewWidth;
           } else if (getLeftPanX(offsetX.value) < leftSwipeViewWidth / 2) {

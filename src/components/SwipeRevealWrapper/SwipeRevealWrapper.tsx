@@ -16,6 +16,8 @@ export const SwipeableItemWrapperComponent = forwardRef(({
   rightFullSwipeView,
   onLeftFullSwipe,
   onRightFullSwipe,
+  onLeftSwipe,
+  onRightSwipe,
   leftSwipeViewContainerStyle,
   rightSwipeViewContainerStyle,
   leftFullSwipeViewContainerStyle,
@@ -44,6 +46,8 @@ export const SwipeableItemWrapperComponent = forwardRef(({
       <GestureDetectorComponent
         onLeftFullSwipe={onLeftFullSwipe}
         onRightFullSwipe={onRightFullSwipe}
+        onLeftSwipe={onLeftSwipe}
+        onRightSwipe={onRightSwipe}
         id={id}
         ref={ref}
         animationType={animationType}
